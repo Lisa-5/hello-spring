@@ -61,17 +61,18 @@ public class HelloController {
 
 
     public static String createMessage( String name, String languages){
-        if (languages.equals("spanish")) {
-            return "¡Hola, " + name + "!";
+        String greeting = "";
+        if (languages.equals("english")){
+            greeting = "Hello, " + name + "!";
         } else if (languages.equals("french")) {
-            return "Bonjour, " + name + "!";
+            greeting = "Bonjour, " + name + "!";
         } else if (languages.equals("italian")) {
-            return "Ciao, " + name + "!";
+            greeting = "Ciao, " + name + "!";
         } else if (languages.equals("portuguese")) {
-            return "Olá, " +name + "!";
-        } else {
-            return "Hello, " + name + "!";
+            greeting = "Olá, " +name + "!";
+        } else if (languages.equals("spanish")) {
+            greeting = "¡Hola, " + name + "!";
         }
-
+        return greeting;
     }
 }
