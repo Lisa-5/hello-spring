@@ -27,9 +27,10 @@ public class HelloController {
     }
 
     //Handles request of the form /hello?name=LaunchCode
-    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "hello")
-    public String helloWithQueryParam(@RequestParam String name){
-        return "Hello, " + name + "!";
+    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "example")
+    public String helloWithQueryParam(@RequestParam String name, @RequestParam String languages){
+        return createMessage(name, languages);
+
     }
 
     //Handles request of the form /hello/LaunchCode
@@ -42,12 +43,35 @@ public class HelloController {
     @GetMapping("form")
     public String helloForm(){
         return "<html>" +
-                "<body>" +
-                "<form action='hello' method='post'>" + // submit a request to /hello
-                "<input type='text' name='name'>" +
-                "<input type='submit' value='Greet me!'>" +
-                "</form>" +
-                "</body>" +
-                "</html>";
+            "<body>" +
+               "<form action='/hello/example' method='post'>" + // submit a request to /hello
+                   "<input type='text' name='name'>" +
+                       "<select name='languages' id='language-select'>" +
+                           "<option value='french'>French</option>" +
+                           "<option value='portuguese'>Portuguese</option>" +
+                           "<option value='spanish'>Spanish</option>" +
+                           "<option value='italian'>Italian</option>" +
+                           "<option value='english' selected >English</option>" +
+                       "</select>" +
+                   "<input type='submit' value='Greet me!'>" +
+               "</form>" +
+           "</body>" +
+       "</html>";
+    }
+
+
+    public static String createMessage( String name, String languages){
+        if (languages.equals("spanish")) {
+            return "¡Hola, " + name + "!";
+        } else if (languages.equals("french")) {
+            return "Bonjour, " + name + "!";
+        } else if (languages.equals("italian")) {
+            return "Ciao, " + name + "!";
+        } else if (languages.equals("portuguese")) {
+            return "Olá, " +name + "!";
+        } else {
+            return "Hello, " + name + "!";
+        }
+
     }
 }
