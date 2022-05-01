@@ -29,7 +29,7 @@ public class HelloController {
     //Handles request of the form /hello?name=LaunchCode
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "example")
     public String helloWithQueryParam(@RequestParam String name, @RequestParam String languages){
-            return createMessage(name, languages);
+        return createMessage(name, languages);
 
     }
 
